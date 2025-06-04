@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós - Luxo Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1556911220-bff31c812dba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            transition: all 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .category-card {
+            transition: all 0.3s ease;
+        }
+        .category-card:hover {
+            transform: scale(1.03);
+        }
+        .cart-dropdown {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+        .cart-dropdown.active {
+            max-height: 500px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Top Bar -->
+    <div class="bg-gray-800 text-white py-2 px-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <span><i class="fas fa-phone-alt mr-2"></i> (93) 99999-9999</span>
+                <span><i class="fas fa-envelope mr-2"></i> contato@pvcasa.com</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="#" class="hover:text-amber-200">Minha Conta</a>
+                <div class="relative group" id="cart-container">
+                    <button class="hover:text-amber-200"><i class="fas fa-shopping-cart mr-2"></i> Carrinho (<span id="cart-count">0</span>)</button>
+                    <div class="cart-dropdown absolute right-0 mt-2 w-72 bg-white text-gray-800 rounded shadow-lg z-50" id="cart-dropdown">
+                        <div class="p-4">
+                            <div id="cart-items" class="max-h-60 overflow-y-auto">
+                                <!-- Cart items will be added here dynamically -->
+                                <p class="text-center py-4">Seu carrinho está vazio</p>
+                            </div>
+                            <div class="border-t mt-2 pt-2">
+                                <div class="flex justify-between font-bold">
+                                    <span>Total:</span>
+                                    <span id="cart-total">R$ 0,00</span>
+                                </div>
+                                <a href="#" class="block mt-2 bg-amber-500 hover:bg-amber-600 text-white text-center py-2 rounded">Finalizar Compra</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-40">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <a href="#" class="text-3xl font-bold text-gray-800"><span class="text-amber-500">PV</span>CASA</a>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="font-medium text-gray-700 hover:text-amber-500">Home</a>
+                    <a href="produtos.html" class="font-medium text-gray-700 hover:text-amber-500">Produtos</a>
+                    <a href="colecoes.html" class="font-medium text-gray-700 hover:text-amber-500">Coleções</a>
+                    <a href="ofertas.html" class="font-medium text-gray-700 hover:text-amber-500">Ofertas</a>
+                    <a href="sobre.html" class="font-medium text-gray-700 hover:text-amber-500">Sobre Nós</a>
+                    <a href="contato.html" class="font-medium text-gray-700 hover:text-amber-500">Contato</a>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <a href="index.html" class="block py-2 text-gray-700 hover:text-amber-500">Home</a>
+                <a href="produtos.html" class="block py-2 text-gray-700 hover:text-amber-500">Produtos</a>
+                <a href="colecoes.html" class="block py-2 text-gray-700 hover:text-amber-500">Coleções</a>
+                <a href="ofertas.html" class="block py-2 text-gray-700 hover:text-amber-500">Ofertas</a>
+                <a href="sobre.html" class="block py-2 text-gray-700 hover:text-amber-500">Sobre Nós</a>
+                <a href="contato.html" class="block py-2 text-gray-700 hover:text-amber-500">Contato</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-white py-32 px-4">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 fade-in">Nossa História</h1>
+            <p class="text-xl md:text-2xl mb-8 fade-in delay-75">Conheça a jornada da LuxoHome em busca do conforto perfeito para seu lar</p>
+        </div>
+    </section>
+
+    <!-- Who We Are -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-12">
+                    <h2 class="text-3xl font-bold mb-6">Quem Somos</h2>
+                    <p class="text-gray-600 mb-6">
+                        A PvCasa nasceu do sonho de transformar lares em refúgios de conforto e elegância. 
+                        Desde nossa fundação em 2010, nos dedicamos a oferecer produtos que unem qualidade 
+                        excepcional, design sofisticado e durabilidade.
+                    </p>
+                    <p class="text-gray-600 mb-6">
+                        Com mais de uma década no mercado, nos tornamos referência em artigos para cama, 
+                        mesa e banho, sempre com foco na satisfação total de nossos clientes.
+                    </p>
+                    <div class="bg-gray-100 p-6 rounded-lg">
+                        <h3 class="font-bold text-lg mb-2">Nossa Missão</h3>
+                        <p class="text-gray-600">
+                            Criar experiências de conforto e bem-estar através de produtos de alta qualidade 
+                            que transformem os momentos cotidianos em pequenos luxos.
+                        </p>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4npW5ZzuE9BMcw-TTSfO69JLa2wWbQhcuTcutBhIsehKhvJ34wHktoHQHfkSb-SrlLdW-U7pZKrX_U6p4kHz1Vzy8w-dO2rgxNj-ireYmYfOHTtS9cwfj3O9o7CRFW3i9yCvrXow=s1360-w660-h620-rw" 
+                         alt="Nossa Loja" class="rounded-lg shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-12">Nosso Time</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Team Member 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <img src="https://media-gru1-2.cdn.whatsapp.net/v/t61.24694-24/355605101_963176858061836_729387560298334455_n.jpg?ccb=11-4&oh=01_Q5Aa1gHGaXDn7gDg5jaVX54dgbzBLoJB0SOHxczRwuRwOE8Drg&oe=684CB9AF&_nc_sid=5e03e0&_nc_cat=106" 
+                         alt="Ana Beatriz" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-amber-100">
+                    <h3 class="text-xl font-semibold mb-2">Valnei</h3>
+                    <p class="text-gray-600 mb-2">Fundadora & CEO</p>
+                    <p class="text-gray-500 text-sm">
+                        "Minha paixão por criar ambientes aconchegantes foi o que me inspirou a criar a LuxoHome."
+                    </p>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1373/1373255.png" 
+                         alt="Carlos Eduardo" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-amber-100">
+                    <h3 class="text-xl font-semibold mb-2">Carlos Eduardo</h3>
+                    <p class="text-gray-600 mb-2">Diretor de Produtos</p>
+                    <p class="text-gray-500 text-sm">
+                        "Nosso compromisso é selecionar apenas os melhores materiais e fornecedores."
+                    </p>
+                </div>
+                
+                <!-- Team Member 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <img src="https://cdn-icons-png.flaticon.com/512/7013/7013643.png" 
+                         alt="Juliana Martins" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-amber-100">
+                    <h3 class="text-xl font-semibold mb-2">Juliana Martins</h3>
+                    <p class="text-gray-600 mb-2">Designer Chefe</p>
+                    <p class="text-gray-500 text-sm">
+                        "Cada peça que criamos tem o propósito de trazer alegria e conforto para seu lar."
+                    </p>
+                </div>
+                
+                <!-- Team Member 4 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1373/1373255.png" 
+                         alt="Rafael Silva" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-amber-100">
+                    <h3 class="text-xl font-semibold mb-2">Rafael Silva</h3>
+                    <p class="text-gray-600 mb-2">Atendimento ao Cliente</p>
+                    <p class="text-gray-500 text-sm">
+                        "Meu objetivo é garantir que cada cliente tenha a melhor experiência possível."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Nossos Valores</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Value 1 -->
+                <div class="bg-amber-50 p-8 rounded-lg text-center">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-medal text-amber-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Qualidade</h3>
+                    <p class="text-gray-600">
+                        Nos comprometemos a oferecer apenas produtos que atendam aos mais altos padrões de qualidade e durabilidade.
+                    </p>
+                </div>
+                
+                <!-- Value 2 -->
+                <div class="bg-amber-50 p-8 rounded-lg text-center">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-heart text-amber-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Satisfação</h3>
+                    <p class="text-gray-600">
+                        A felicidade do nosso cliente está em primeiro lugar, garantindo sempre uma experiência de compra excepcional.
+                    </p>
+                </div>
+                
+                <!-- Value 3 -->
+                <div class="bg-amber-50 p-8 rounded-lg text-center">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-leaf text-amber-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Sustentabilidade</h3>
+                    <p class="text-gray-600">
+                        Buscamos reduzir nosso impacto ambiental com materiais e processos sustentáveis em toda nossa cadeia produtiva.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-200 pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-4"><span class="text-amber-500">PV</span>CASA</h3>
+                    <p class="mb-4">Tudo o que você precisa para deixar seu lar mais bonito, confortável e aconchegante.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-amber-500"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-amber-500"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-amber-500"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-amber-500"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Links Úteis</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-amber-500">Sobre Nós</a></li>
+                        <li><a href="#" class="hover:text-amber-500">Nossas Lojas</a></li>
+                        <li><a href="#" class="hover:text-amber-500">Blog</a></li>
+                        <li><a href="#" class="hover:text-amber-500">Dúvidas Frequentes</a></li>
+                        <li><a href="#" class="hover:text-amber-500">Trocas e Devoluções</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Minha Conta</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-amber-500">Meus Pedidos</a></li>
+                        <li><a href="#" class="hover:text-amber-500">Meus Favoritos</a></li>
+                        <li><a href="#" class="hover:text-amber-500">Cadastre-se</a></li>
+                        <li><a href="#" class="hover:text-amber-500">Login</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Contato</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-amber-500"></i>
+                            <span>Av. Brg. Haroldo Veloso, 100 - Boa Esperança, Itaituba - PA</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3 text-amber-500"></i>
+                            <span>(93) 99999-9999</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-amber-500"></i>
+                            <span>contato@pvcasa.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-clock mr-3 text-amber-500"></i>
+                            <span>Seg-Sex: 9h-18h<br>Sáb: 9h-13h</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="mb-4 md:mb-0">&copy; 2023 PvCasa. Todos os direitos reservados.</p>
+                <div class="flex space-x-4">
+                    <img src="https://images.icon-icons.com/2163/PNG/512/visa_icon_133070.png" alt="Visa" class="h-6">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/MasterCard_early_1990s_logo.svg/250px-MasterCard_early_1990s_logo.svg.png" alt="Mastercard" class="h-6">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Elo_card_association_logo_-_black_text.svg/2560px-Elo_card_association_logo_-_black_text.svg.png" alt="Elo" class="h-6">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo%E2%80%94pix_powered_by_Banco_Central_%28Brazil%2C_2020%29.svg/2560px-Logo%E2%80%94pix_powered_by_Banco_Central_%28Brazil%2C_2020%29.svg.png" alt="Pix" class="h-6">
+                    <img src="https://blog.br.tkelevator.com/wp-content/uploads/2023/04/boleto-logo.png" alt="Boleto" class="h-6">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <a href="https://wa.me/559391055776?text=Estou%20interessado%20em%20mais%20informa%C3%A7%C3%B5es%20sobre%20seus%20produtos" class="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg flex items-center justify-center w-14 h-14">
+            <i class="fab fa-whatsapp text-2xl"></i>
+        </a>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Cart functionality
+        const cartContainer = document.getElementById('cart-container');
+        const cartDropdown = document.getElementById('cart-dropdown');
+        const cartCount = document.getElementById('cart-count');
+        const cartItems = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+        
+        let cart = [];
+        
+        // Toggle cart dropdown
+        cartContainer.addEventListener('click', (e) => {
+            e.stopPropagation();
+            cartDropdown.classList.toggle('active');
+        });
+        
+        // Close cart when clicking outside
+        document.addEventListener('click', () => {
+            if (cartDropdown.classList.contains('active')) {
+                cartDropdown.classList.remove('active');
+            }
+        });
+        
+        // Add to cart functionality
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                const id = button.getAttribute('data-id');
+                const name = button.getAttribute('data-name');
+                const price = parseFloat(button.getAttribute('data-price'));
+                
+                // Check if item already in cart
+                const existingItemIndex = cart.findIndex(item => item.id === id);
+                
+                if (existingItemIndex !== -1) {
+                    cart[existingItemIndex].quantity += 1;
+                } else {
+                    cart.push({ id, name, price, quantity: 1 });
+                }
+                
+                updateCart();
+                
+                // Show notification
+                showNotification(`${name} foi adicionado ao carrinho!`);
+            });
+        });
+        
+        // Update cart display
+        function updateCart() {
+            // Update count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Update items list
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="text-center py-4">Seu carrinho está vazio</p>';
+            } else {
+                cart.forEach(item => {
+                    const itemTotal = (item.price * item.quantity).toFixed(2);
+                    
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'flex justify-between items-center py-2 border-b';
+                    itemElement.innerHTML = `
+                        <div class="flex-1">
+                            <h5 class="font-medium">${item.name}</h5>
+                            <div class="flex items-center mt-1">
+                                <button class="decrease-quantity text-xs p-1 bg-gray-200 rounded" data-id="${item.id}">-</button>
+                                <span class="mx-2">${item.quantity}</span>
+                                <button class="increase-quantity text-xs p-1 bg-gray-200 rounded" data-id="${item.id}">+</button>
+                                <span class="ml-2 font-medium">R$ ${itemTotal}</span>
+                            </div>
+                        </div>
+                        <button class="remove-item text-gray-500 hover:text-red-500 ml-2" data-id="${item.id}">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    `;
+                    cartItems.appendChild(itemElement);
+                });
+                
+                // Add event listeners to new buttons
+                document.querySelectorAll('.decrease-quantity').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const id = e.target.getAttribute('data-id');
+                        const itemIndex = cart.findIndex(item => item.id === id);
+                        
+                        if (cart[itemIndex].quantity > 1) {
+                            cart[itemIndex].quantity -= 1;
+                        } else {
+                            cart.splice(itemIndex, 1);
+                        }
+                        
+                        updateCart();
+                    });
+                });
+                
+                document.querySelectorAll('.increase-quantity').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const id = e.target.getAttribute('data-id');
+                        const itemIndex = cart.findIndex(item => item.id === id);
+                        
+                        cart[itemIndex].quantity += 1;
+                        updateCart();
+                    });
+                });
+                
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const id = e.target.closest('button').getAttribute('data-id');
+                        const itemIndex = cart.findIndex(item => item.id === id);
+                        
+                        cart.splice(itemIndex, 1);
+                        updateCart();
+                    });
+                });
+            }
+            
+            // Update total
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = `R$ ${total.toFixed(2)}`;
+        }
+        
+        // Show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'fixed bottom-4 left-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg flex items-center z-50';
+            notification.innerHTML = `
+                <i class="fas fa-check-circle mr-2"></i>
+                <span>${message}</span>
+            `;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.add('opacity-0', 'transition-opacity', 'duration-300');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+        
+        // Countdown timers
+        function updateCountdowns() {
+            // Daily countdown
+            const now = new Date();
+            const endOfDay = new Date();
+            endOfDay.setHours(23, 59, 59, 999);
+            
+            const diff = endOfDay - now;
+            
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('countdown-hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('countdown-minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('countdown-seconds').textContent = seconds.toString().padStart(2, '0');
+            
+            // Week offer countdown (48 hours for example)
+            const weekOfferEnd = new Date(now.getTime() + (48 * 60 * 60 * 1000));
+            const weekDiff = weekOfferEnd - now;
+            
+            const weekHours = Math.floor(weekDiff / (1000 * 60 * 60));
+            const weekMins = Math.floor((weekDiff % (1000 * 60 * 60)) / (1000 * 60));
+            const weekSecs = Math.floor((weekDiff % (1000 * 60)) / 1000);
+            
+            document.getElementById('week-offer-timer').textContent = 
+                `${weekHours.toString().padStart(2, '0')}:${weekMins.toString().padStart(2, '0')}:${weekSecs.toString().padStart(2, '0')}`;
+        }
+        
+        setInterval(updateCountdowns, 1000);
+        updateCountdowns();
+    </script>
+</body>
+</html>
